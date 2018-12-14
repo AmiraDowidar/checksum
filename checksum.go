@@ -5,7 +5,7 @@ package main
        "io"
        "os"
        "math"
-       "crypto/md5"
+       "crypto/sha256"
    )
 
    const filechunk = 8192    // we settle for 8KB
@@ -27,7 +27,7 @@ package main
 
       blocks := uint64(math.Ceil(float64(filesize) / float64(filechunk)))
 
-      hash := md5.New()
+      hash := sha256.New()
 
       for i := uint64(0); i < blocks; i++ {
           blocksize := int(math.Min(filechunk, float64(filesize-int64(i*filechunk))))
